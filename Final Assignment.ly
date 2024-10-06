@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.24.3"
 
 \header {
   title = "Composition Final Assignment"
@@ -80,7 +80,7 @@ lower = \relative c {
      <d f a>4. r 
      <d g bes> r 
      <d f a> r 
-     <b d gis>4. <cis e a> 
+     <d e gis>4. <cis e a> 
      <a d f>4. <a cis e g> 
      <d f a>2.
   }
@@ -90,16 +90,16 @@ lower = \relative c {
      <g bes e> r 
      <f a d> r 
      <e g bes> r 
-     <d f a>4. <a cis e>
+     <a, d f>4. <a cis e>
      <d f a>4. r 
      <d g bes> r 
      <d f a> r 
-     <b d gis>4. <cis e a> 
+     <d e gis>4. <cis e a> 
      <a d f>4. <a cis e g> 
      <bes d f>2.
      <d f a>4. <cis e a> 
      <a d f> <a cis e g> 
-     <d f a>2.
+     <d, a' d>2.
   }
 }
 
@@ -120,8 +120,8 @@ lower = \relative c {
       \new Staff = "lower" \new Voice = "lower" \lower
       \new Lyrics {
         \lyricsto "lower" {
-          \repeat volta 2 { i iv i "V7/V" "V6" "i64" "V7" i }
-          \repeat volta 2 { "iv6" "iii6" "iio6" "i6" "iio" "i6" V i iv i "V7/V" "V6" "i64" "V7" vi i "V6" "i64" "V7" i }
+          \repeat volta 2 { i "iv64" i "V42/V" "V6" "i64" "V7" i }
+          \repeat volta 2 { "iv6" "iii6" "iio6" "i6" "iio" "i64" V i "iv64" i "V42/V" "V6" "i64" "V7" vi i "V6" "i64" "V7" i }
         }
       }
     >>
