@@ -17,7 +17,7 @@ melody = \relative c'' {
     a8. bes16 a8 g f e 
     gis a b cis b a 
     d e f e d e 
-    d4. r
+    d4.^\markup "PAC" r
   }
   \repeat volta 2 {
     g16 a bes c d8 bes g d 
@@ -25,23 +25,23 @@ melody = \relative c'' {
     e16 f g a bes8 g e bes
     d16 e f g a8 f d f
     g bes a g f e 
-    d4. cis
+    d4. cis^\markup "HC"
     a8. bes16 a8 d g, f 
     bes8. c16 bes8 g16 a bes c d8 
     a8. bes16 a8 g f e 
     gis a b cis b a 
     bes a f g f e 
-    f4. r
+    f4.^\markup "DC" r
     \alternative {
       \volta 1 {
         a8. bes16 a8 e' d cis 
         d e f e d e
-        d4. r
+        d4.^\markup "PAC" r
       }
       \volta 2 {
         a8. bes16 a8 e' cis a 
         d a f e d e 
-        d2.
+        d2.^\markup "PAC"
       }
     }
   }
