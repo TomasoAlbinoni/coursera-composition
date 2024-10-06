@@ -202,8 +202,8 @@ lower = \relative c {
         midiInstrument = "piano"
       }
       <<
-        \new Staff = "upper" \upper
-        \new Staff = "lower" \new Voice = "lower" \lower
+        \upper
+        \lower
       >>
     >>
   }
