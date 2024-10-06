@@ -16,11 +16,11 @@ melody = \relative c'' {
     bes8. c16 bes8 g16 a bes c d8 
     a8. bes16 a8 g f e 
     gis a b cis b a 
-    bes a f g f e 
+    d e f e d e 
     d4. r
   }
   \repeat volta 2 {
-    g'16 a bes c d8 bes g d 
+    g16 a bes c d8 bes g d 
     f16 g a bes c8 a f c 
     e16 f g a bes8 g e bes
     d16 e f g a8 f d f
@@ -32,9 +32,18 @@ melody = \relative c'' {
     gis a b cis b a 
     bes a f g f e 
     f4. r
-    a8. bes16 a8 e' cis a 
-    d a f e d e 
-    d2.
+    \alternative {
+      \volta 1 {
+        a8. bes16 a8 e' d cis 
+        d e f e d e
+        d4. r
+      }
+      \volta 2 {
+        a8. bes16 a8 e' cis a 
+        d a f e d e 
+        d2.
+      }
+    }
   }
   \bar "|."
 }
@@ -65,9 +74,18 @@ upper = \relative c' {
     b' gis e r cis e 
     f8 d a g' e cis 
     d f a d4.
-    d8 a f r8 a, cis 
-    f d a g' e cis 
-    d f a d4.
+    \alternative {
+      \volta 1 {
+        d8 a f r8 a, cis 
+        f d a g' e cis 
+        d f a d4.
+      }
+      \volta 2 {
+        d8 a f r8 a, cis 
+        f d a g' e cis 
+        d f a d4.
+      }
+    }
   }
 }
 
@@ -85,11 +103,11 @@ lower = \relative c {
      <d f a>2.
   }
   \repeat volta 2 {
-     bes8 <d g> bes <d g> bes <d g>
-     a <c f> a <c f> a <c f>
-     g <bes e> g <bes e> g <bes e>
-     f <a d> f <a d> f <a d>
-     e4. <g bes>
+     bes8-. <d g>-. bes-. <d g>-. bes-. <d g>-.
+     a-. <c f>-. a-. <c f>-. a-. <c f>-.
+     g-. <bes e>-. g-. <bes e>-. g-. <bes e>-.
+     f-. <a d>-. f-. <a d>-. f-. <a d>-.
+     e'4. <bes g'>
      <a d f>4. <a cis e>
      <d f a>4. r 
      <d g bes> r 
@@ -97,20 +115,28 @@ lower = \relative c {
      <d e gis>4. <cis e a> 
      <a d f>4. <a cis e g> 
      <bes d f>2.
-     <d f a>4. <cis e a> 
-     <a d f> <a cis e g> 
-     <d, a' d>2.
+     \alternative {
+      \volta 1 {
+        <d f a>4. <cis e a> 
+        <a d f> <a cis e g> 
+        <d f a>2.
+      }
+      \volta 2 {
+        <d f a>4. <cis e a> 
+        <a d f> <a cis e g> 
+        <d, a' d>2.
+      }
+    }
   }
 }
 
 \score {
   <<
     \new Staff \with {
-      midiInstrument = "violin"
       instrumentName = "Violin"
     }
     {
-      \autoBeamOff \melody
+      \melody
     }
     \new PianoStaff \with {
       instrumentName = "Piano"
@@ -120,15 +146,66 @@ lower = \relative c {
       \new Staff = "lower" \new Voice = "lower" \lower
       \new Lyrics {
         \lyricsto "lower" {
-          \repeat volta 2 { i "iv64" i "V42/V" "V6" "i64" "V7" i }
-          \repeat volta 2 { "iv6" _ _ _ _ _ "iii6" _ _ _ _ _ 
-                            "iio6" _ _ _ _ _ "i6" _ _ _ _ _ "iio" _ "i64" V i "iv64" i "V42/V" "V6" "i64" "V7" vi i "V6" "i64" "V7" i }
+          \repeat volta 2 {
+            i 
+            "iv64" 
+            i 
+            "V42/V" "V6" 
+            "i64" "V7" 
+            i
+          }
+          \repeat volta 2 {
+            "iv6" _ _ _ _ _ 
+            "iii6" _ _ _ _ _ 
+            "iio6" _ _ _ _ _
+            "i6" _ _ _ _ _
+            "iio" _ 
+            "i64" V 
+            i 
+            "iv64" 
+            i 
+            "V42/V" "V6" 
+            "i64" "V7" 
+            vi 
+            \alternative {
+              \volta 1 {
+                i "V6" 
+                "i64" "V7" 
+                i
+              }
+              \volta 2 {
+                i "V6" 
+                "i64" "V7" 
+                i
+              }
+            }
+          }
         }
       }
     >>
   >>
   \layout {
     \context { \Staff \RemoveEmptyStaves }
+  }
+}
+
+\score {
+  \unfoldRepeats {
+    <<
+      \new Staff \with {
+        midiInstrument = "violin"
+      }
+      {
+        \melody
+      }
+      \new PianoStaff \with {
+        midiInstrument = "piano"
+      }
+      <<
+        \new Staff = "upper" \upper
+        \new Staff = "lower" \new Voice = "lower" \lower
+      >>
+    >>
   }
   \midi {
     \tempo 4=80
